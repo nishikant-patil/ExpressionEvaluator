@@ -1,8 +1,12 @@
-package JsonRuleEngine;
+package JsonRuleEngine.validation.model;
+
+import JsonRuleEngine.container.AndRuleContainer;
+import JsonRuleEngine.container.OrRuleContainer;
+import JsonRuleEngine.model.Cart;
 
 public class Validation {
 	private String result;
-	private MyObject myObj;
+	private Cart cart;
 	private OrRuleContainer orRules;
 	private AndRuleContainer andRules;
 	public String getResult() {
@@ -23,11 +27,11 @@ public class Validation {
 	public void setAndRules(AndRuleContainer andRules) {
 		this.andRules = andRules;
 	}
-	public MyObject getMyObj() {
-		return myObj;
+	public Cart getCart() {
+		return cart;
 	}
-	public void setMyObj(MyObject myObj) {
-		this.myObj = myObj;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 	public String getResultIfPassed() throws Exception{
@@ -35,17 +39,17 @@ public class Validation {
 			return null;
 		}
 		if(null==orRules && null!=andRules){
-			if(andRules.logicalAnd(myObj)){
+			if(andRules.logicalAnd(cart)){
 				return result;
 			}
 		}
 		if(null!=orRules && null==andRules){
-			if(orRules.logicalOr(myObj)){
+			if(orRules.logicalOr(cart)){
 				return result;
 			}
 		}
 		if(null!=orRules && null!=andRules){
-			if(orRules.logicalOr(myObj) && andRules.logicalAnd(myObj)){
+			if(orRules.logicalOr(cart) && andRules.logicalAnd(cart)){
 				return result;
 			}
 		}

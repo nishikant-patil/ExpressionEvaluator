@@ -1,6 +1,8 @@
-package JsonRuleEngine;
+package JsonRuleEngine.rule;
 
 import java.lang.reflect.Method;
+
+import JsonRuleEngine.model.Cart;
 
 public class JsonRule {
 	private String ruleField;
@@ -21,9 +23,13 @@ public class JsonRule {
 		this.ruleEqualsValue = ruleEqualsValue;
 	}
 
-	public boolean apply(MyObject myObj) throws Exception {
-		Method m = myObj.getClass().getMethod("get" + ruleField);
-		Object value =  m.invoke(myObj);
-		return ruleEqualsValue.equals(value.toString());
+	public boolean apply(Cart cart) throws Exception {
+		Method m = null;
+		Object obj = cart;
+		for(String token : ruleField.split("\\.")){
+			m = obj.getClass().getMethod("get" + token);
+			obj = m.invoke(obj);
+		}
+		return ruleEqualsValue.equals(obj.toString());
 	}	
 }

@@ -1,9 +1,12 @@
-package JsonRuleEngine;
+package JsonRuleEngine.container;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrRuleContainer {
+import JsonRuleEngine.model.Cart;
+import JsonRuleEngine.rule.JsonRule;
+
+public class AndRuleContainer {
 	private List<JsonRule> rules = new ArrayList<>();
 	public List<JsonRule> getRules() {
 		return rules;
@@ -11,10 +14,10 @@ public class OrRuleContainer {
 	public void setRules(List<JsonRule> rules) {
 		this.rules = rules;
 	}
-	public boolean logicalOr(MyObject myObj) throws Exception{
-		boolean ret = false;
+	public boolean logicalAnd(Cart cart) throws Exception{
+		boolean ret = true;
 		for(JsonRule rule : rules){
-			ret = ret || rule.apply(myObj);
+			ret = ret && rule.apply(cart);
 		}
 		return ret;
 	}
