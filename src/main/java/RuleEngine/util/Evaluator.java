@@ -1,4 +1,4 @@
-package JsonRuleEngine.util;
+package RuleEngine.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

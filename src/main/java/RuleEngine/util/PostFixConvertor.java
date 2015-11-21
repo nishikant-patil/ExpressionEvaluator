@@ -1,4 +1,4 @@
-package JsonRuleEngine.util;
+package RuleEngine.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;

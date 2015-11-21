@@ -1,4 +1,4 @@
-package JsonRuleEngine.model;
+package RuleEngine.model;
 
 
 public class Cart {

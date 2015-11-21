@@ -1,9 +1,9 @@
-package JsonRuleEngine;
+package RuleEngine;
 
-import JsonRuleEngine.model.Cart;
-import JsonRuleEngine.model.Item;
-import JsonRuleEngine.util.Evaluator;
-import JsonRuleEngine.util.PostFixConvertor;
+import RuleEngine.model.Cart;
+import RuleEngine.model.Item;
+import RuleEngine.util.Evaluator;
+import RuleEngine.util.PostFixConvertor;
 
 import java.lang.reflect.InvocationTargetException;
 
