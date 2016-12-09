@@ -2,6 +2,7 @@ package RuleEngine;
 
 import RuleEngine.model.Cart;
 import RuleEngine.model.Item;
+import RuleEngine.util.Calculator;
 import RuleEngine.util.Evaluator;
 import RuleEngine.util.PostFixConvertor;
 
@@ -14,15 +15,27 @@ import java.lang.reflect.InvocationTargetException;
 public class Validator {
 
     private static Cart cart = new Cart();
-    static{
+
+    static {
         Item item = new Item();
         item.setName("Jack Daniels");
         item.setType("Whiskey");
         cart.setItem(item);
         cart.setCartValue(200);
     }
+
     public static void main(String... args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        String expression="Item.Name=Jack Daniels & (CartValue=200.0 & Item.Type=Whiskey)";
+        testValidator();
+        testCalculator();
+    }
+
+    private static void testCalculator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        System.out.println(Calculator.calculate(cart, PostFixConvertor.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)")));
+    }
+
+    private static void testValidator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        String expression = "Item.Name=Jack Daniels&(CartValue=200.0&Item.Type=Whiskey)";
         System.out.println(Evaluator.evaluate(cart, PostFixConvertor.convertToPostFix(expression)));
     }
 }
+
