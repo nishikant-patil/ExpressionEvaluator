@@ -1,10 +1,10 @@
-package RuleEngine;
+package ExpressionEvaluator;
 
-import RuleEngine.model.Cart;
-import RuleEngine.model.Item;
-import RuleEngine.util.Calculator;
-import RuleEngine.util.Evaluator;
-import RuleEngine.util.PostFixConvertor;
+import ExpressionEvaluator.model.Cart;
+import ExpressionEvaluator.model.Item;
+import ExpressionEvaluator.util.Calculator;
+import ExpressionEvaluator.util.Evaluator;
+import ExpressionEvaluator.util.PostFixConvertor;
 
 import java.lang.reflect.InvocationTargetException;
 
