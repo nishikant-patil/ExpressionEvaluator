@@ -1,15 +1,16 @@
 package ExpressionEvaluator.util;
 
+import javax.print.DocFlavor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
 public class Calculator {
     public static BigDecimal calculate(Object object, List<String> tokens) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        System.out.println(tokens);
         insertValuesForPlaceholders(object, tokens);
         Stack<String> operandStack = new Stack<>();
         BigDecimal result = null;
@@ -58,6 +59,9 @@ public class Calculator {
     }
 
     private static String getLOp(Object object, String operand) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        if (object instanceof Map) {
+            return (String) ((Map) object).get(operand);
+        }
         Method m;
         for (String token : operand.split("\\.")) {
             m = object.getClass().getMethod("get" + token);

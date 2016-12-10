@@ -7,6 +7,8 @@ import ExpressionEvaluator.util.Evaluator;
 import ExpressionEvaluator.util.PostFixConvertor;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Nishikant on 9/6/2015.
@@ -30,7 +32,20 @@ public class Validator {
     }
 
     private static void testCalculator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        System.out.println(Calculator.calculate(cart, PostFixConvertor.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)")));
+        long time = System.currentTimeMillis();
+        for (int i = 0; i != 900000; ++i) {
+            Calculator.calculate(cart, PostFixConvertor.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
+        }
+        time = System.currentTimeMillis() - time;
+        System.out.println(time / 1000.0);
+        Map<String, String> map = new HashMap<>();
+        map.put("CartValue", "200");
+        time = System.currentTimeMillis();
+        for (int i = 0; i != 900000; ++i) {
+            Calculator.calculate(cart, PostFixConvertor.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
+        }
+        time = System.currentTimeMillis() - time;
+        System.out.println(time / 1000.0);
     }
 
     private static void testValidator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
