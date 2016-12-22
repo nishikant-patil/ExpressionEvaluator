@@ -1,6 +1,5 @@
 package ExpressionEvaluator.util;
 
-import javax.print.DocFlavor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -10,6 +9,7 @@ import java.util.Stack;
 import java.util.regex.Pattern;
 
 public class Calculator {
+    private static Pattern fieldNamePattern = Pattern.compile("[A-Za-z]+");
     public static BigDecimal calculate(Object object, List<String> tokens) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         insertValuesForPlaceholders(object, tokens);
         Stack<String> operandStack = new Stack<>();
@@ -51,7 +51,7 @@ public class Calculator {
 
     private static void insertValuesForPlaceholders(Object object, List<String> tokens) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         for (int i = 0; i != tokens.size(); ++i) {
-            if (Pattern.compile("[A-Za-z]+").matcher(tokens.get(i)).matches()) {
+            if (fieldNamePattern.matcher(tokens.get(i)).matches()) {
                 String value = getLOp(object, tokens.get(i));
                 tokens.set(i, value);
             }

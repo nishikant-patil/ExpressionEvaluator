@@ -8,6 +8,7 @@ import ExpressionEvaluator.util.PostFixConverter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,9 +33,10 @@ public class Validator {
     }
 
     private static void testCalculator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        List<String> tokens = PostFixConverter.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)");
         long time = System.currentTimeMillis();
         for (int i = 0; i != 900000; ++i) {
-            Calculator.calculate(cart, PostFixConverter.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
+            Calculator.calculate(cart, tokens);
         }
         time = System.currentTimeMillis() - time;
         System.out.println(time / 1000.0);
@@ -42,7 +44,7 @@ public class Validator {
         map.put("CartValue", "200");
         time = System.currentTimeMillis();
         for (int i = 0; i != 900000; ++i) {
-            Calculator.calculate(cart, PostFixConverter.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
+            Calculator.calculate(map, tokens);
         }
         time = System.currentTimeMillis() - time;
         System.out.println(time / 1000.0);
