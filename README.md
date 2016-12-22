@@ -1,2 +1,2 @@
 # ExpressionEvaluator
-Expression based rule engine to perform validations over objects.
+Utility to parse and evaluate boolean and arithmetic expressions. The values in the expression can be actual values like '1', '2' etc. or a field of some object.
