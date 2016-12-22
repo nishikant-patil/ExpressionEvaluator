@@ -4,7 +4,7 @@ import ExpressionEvaluator.model.Cart;
 import ExpressionEvaluator.model.Item;
 import ExpressionEvaluator.util.Calculator;
 import ExpressionEvaluator.util.Evaluator;
-import ExpressionEvaluator.util.PostFixConvertor;
+import ExpressionEvaluator.util.PostFixConverter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class Validator {
     private static void testCalculator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         long time = System.currentTimeMillis();
         for (int i = 0; i != 900000; ++i) {
-            Calculator.calculate(cart, PostFixConvertor.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
+            Calculator.calculate(cart, PostFixConverter.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
         }
         time = System.currentTimeMillis() - time;
         System.out.println(time / 1000.0);
@@ -42,7 +42,7 @@ public class Validator {
         map.put("CartValue", "200");
         time = System.currentTimeMillis();
         for (int i = 0; i != 900000; ++i) {
-            Calculator.calculate(cart, PostFixConvertor.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
+            Calculator.calculate(cart, PostFixConverter.convertToPostFix("2*10+2/2-3*6/2+(CartValue*20-33)+(CartValue*10/100)-(CartValue*10/100)*(CartValue*10/100)+(CartValue*10/100)-(CartValue*10/100)-(CartValue*10/100)"));
         }
         time = System.currentTimeMillis() - time;
         System.out.println(time / 1000.0);
@@ -50,7 +50,7 @@ public class Validator {
 
     private static void testValidator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         String expression = "Item.Name=Jack Daniels&(CartValue=200.0&Item.Type=Whiskey)";
-        System.out.println(Evaluator.evaluate(cart, PostFixConvertor.convertToPostFix(expression)));
+        System.out.println(Evaluator.evaluate(cart, PostFixConverter.convertToPostFix(expression)));
     }
 }
 

@@ -6,7 +6,7 @@ import java.util.*;
  * Created by Nishikant on 9/6/2015.
  * Converts the expression provided in Infix format to a Postfix one.
  */
-public class PostFixConvertor {
+public class PostFixConverter {
     public static List<String> convertToPostFix(String expression) {
         String postFixExpr = getPostFixExpr(expression);
         List<String> tokens = new ArrayList<>(Arrays.asList(postFixExpr.split("`")));
