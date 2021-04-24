@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class Validator {
 
-    private static Cart cart = new Cart();
+    private static final Cart cart = new Cart();
 
     static {
         Item item = new Item();
@@ -29,7 +29,7 @@ public class Validator {
 
     public static void main(String... args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         testValidator();
-        testCalculator();
+        //testCalculator();
     }
 
     private static void testCalculator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -51,7 +51,7 @@ public class Validator {
     }
 
     private static void testValidator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        String expression = "Item.Name=Jack Daniels&(CartValue=200.0&Item.Type=Whiskey)";
+        String expression = "Item.Name=Jack Daniels&(CartValue=200.0&Item.Type=Whiskey)|Item.Type=Tiskey";
         System.out.println(Evaluator.evaluate(cart, PostFixConverter.convertToPostFix(expression)));
     }
 }

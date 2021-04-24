@@ -12,26 +12,18 @@ import java.util.Stack;
 public class Evaluator {
     public static boolean evaluate(Object object, List<String> tokens) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         convertEqualsToBoolean(object, tokens);
-        System.out.println(tokens);
         Stack<String> operandStack = new Stack<>();
-        boolean result = true;
         for (String token : tokens) {
             if (token.equals("|") || token.equals("&")) {
                 switch (token) {
-                    case "|":
-                        result &= Boolean.valueOf(operandStack.pop()) | Boolean.valueOf(operandStack.pop());
-                        operandStack.push(result + "");
-                        break;
-                    case "&":
-                        result &= Boolean.valueOf(operandStack.pop()) & Boolean.valueOf(operandStack.pop());
-                        operandStack.push(result + "");
-                        break;
+                    case "|" -> operandStack.push((Boolean.parseBoolean(operandStack.pop()) | Boolean.parseBoolean(operandStack.pop())) + "");
+                    case "&" -> operandStack.push((Boolean.parseBoolean(operandStack.pop()) & Boolean.parseBoolean(operandStack.pop())) + "");
                 }
             } else {
                 operandStack.push(token);
             }
         }
-        return result;
+        return Boolean.parseBoolean(operandStack.pop());
     }
 
     private static void convertEqualsToBoolean(Object object, List<String> tokens) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
