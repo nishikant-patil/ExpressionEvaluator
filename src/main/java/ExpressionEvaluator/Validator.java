@@ -29,7 +29,7 @@ public class Validator {
 
     public static void main(String... args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         testValidator();
-        //testCalculator();
+        testCalculator();
     }
 
     private static void testCalculator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
