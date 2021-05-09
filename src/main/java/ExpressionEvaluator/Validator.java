@@ -21,8 +21,8 @@ public class Validator {
 
     static {
         Item item = new Item();
-        item.setName("Jack Daniels");
-        item.setType("Whiskey");
+        item.setName("Hello");
+        item.setType("World");
         cart.setItem(item);
         cart.setCartValue(200);
     }
@@ -51,7 +51,7 @@ public class Validator {
     }
 
     private static void testValidator() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        String expression = "Item.Name=Jack Daniels&(CartValue=200.0&Item.Type=Whiskey)|Item.Type=Tiskey";
+        String expression = "Item.Name=Hello&(CartValue=200.0&Item.Type=World)|Item.Type=Torld";
         System.out.println(Evaluator.evaluate(cart, PostFixConverter.convertToPostFix(expression)));
     }
 }
